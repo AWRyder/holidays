@@ -14,7 +14,7 @@ pipeline {
           sh 'chmod +x run_ssh.sh'
           withEnv(overrides: ['GIT_SSH=run_ssh.sh']) {
             sh 'git remote add uptest git@github.com:AWRyder/uptest.git'
-            sh 'git push uptest develop:master'
+            sh 'git push uptest develop:master -f'
           }
 
         }
