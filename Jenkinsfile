@@ -8,7 +8,14 @@ pipeline {
     }
     stage('Upload') {
       steps {
-        git(url: 'git@github.com:AWRyder/uptest.git', branch: 'master', credentialsId: 'awk-at-bi')
+        withCredentials([sshUserPrivateKey(credentialsId: 'awk-at-bi', keyFileVariable: 'GITHUB_KEY')]) {
+            sh 'echo ssh -i $GITHUB_KEY -l git -o StrictHostKeyChecking=no \\"\\$@\\" > run_ssh.sh'
+            sh 'chmod +x run_ssh.sh'
+            withEnv(['GIT_SSH=run_ssh.sh']) {
+                sh 'git remote add uptest git@github.com:AWRyder/uptest.git'
+                sh 'git push uptest master'
+            }
+        }
       }
     }
   }
