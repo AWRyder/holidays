@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        deleteDir()
         git(credentialsId: 'awk-at-bi', url: 'git@github.com:AWRyder/holidays.git', branch: 'develop')
       }
     }
