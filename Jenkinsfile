@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Process') {
+    stage('Checkout') {
       steps {
-        sleep 2
+        deleteDir()
+        git(url: 'git@github.com:AWRyder/holidays.git', branch: 'develop', credentialsId: 'awk-at-bi', poll: true)
       }
     }
     stage('Upload') {
