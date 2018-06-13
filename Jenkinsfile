@@ -3,8 +3,11 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        deleteDir()
-        git(url: 'git@github.com:AWRyder/holidays.git', branch: 'develop', credentialsId: 'awk-at-bi', poll: true)
+        checkout([$class: 'GitSCM',
+            branches: [[name: 'origin/develop']],
+            extensions: [[$class: 'WipeWorkspace']],
+            userRemoteConfigs: [[url: 'git@github.com:AWRyder/holidays.git']]
+        ])
       }
     }
     stage('Upload') {
