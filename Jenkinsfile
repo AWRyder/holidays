@@ -4,11 +4,11 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout([$class: 'GitSCM',
-                    branches: [[name: 'origin/develop']],
-                    extensions: [[$class: 'WipeWorkspace']],
-                    userRemoteConfigs: [[url: 'git@github.com:AWRyder/holidays.git']],
-                    credentialsId: "awk-at-bi"
-                ])
+                            branches: [[name: 'origin/develop']],
+                            extensions: [[$class: 'WipeWorkspace']],
+                            userRemoteConfigs: [[url: 'git@github.com:AWRyder/holidays.git']],
+                            credentialsId: "awk-at-bi"
+                        ])
       }
     }
     stage('Upload') {
