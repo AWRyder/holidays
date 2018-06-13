@@ -6,7 +6,8 @@ pipeline {
         checkout([$class: 'GitSCM',
                     branches: [[name: 'origin/develop']],
                     extensions: [[$class: 'WipeWorkspace']],
-                    userRemoteConfigs: [[url: 'git@github.com:AWRyder/holidays.git']]
+                    userRemoteConfigs: [[url: 'git@github.com:AWRyder/holidays.git']],
+                    credentialsId: "awk-at-bi"
                 ])
       }
     }
