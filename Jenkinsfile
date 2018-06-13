@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Upload') {
       steps {
-        git(url: 'git@github.com:AWRyder/uptest.git', branch: 'master')
+        git(url: 'git@github.com:AWRyder/uptest.git', branch: 'master', credentialsId: 'githubmine')
       }
     }
   }
