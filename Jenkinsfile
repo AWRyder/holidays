@@ -7,6 +7,11 @@ pipeline {
         checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'awk-at-bi', url: 'git@github.com:AWRyder/holidays.git']]])
       }
     }
+    stage('Validate') {
+      steps {
+        sh 'echo e'
+      }
+    }
     stage('Upload') {
       steps {
         withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'awk-at-bi', keyFileVariable: 'GITHUB_KEY')]) {
